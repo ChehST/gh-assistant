@@ -1,0 +1,7 @@
+__pycache__/
+venv/
+secrets.json
+
+
+# Temporary rule
+secrets.py
