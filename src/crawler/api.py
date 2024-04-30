@@ -1,25 +1,28 @@
-from abc import ABC, abstractmethod
 import requests
 
 
-class GitHubAPI_access(ABC):
+class GitHubAPI_access:
+    """Authenticate to github profile"""
     def __init__(self, username, token):
         self.username = username
         self.token = token
         self.base_url = "https://api.github.com"
+        self.response = None
 
-
-class GitHubAPI_ep(GitHubAPI_access):
-    """GihHub API endpont executor"""
-
-
-    def get_repos(self):
+    def _authenticate(self):
         url = f"{self.base_url}/users/{self.username}/repos"
         headers = {"Authorization": f"token {self.token}"}
-        response = requests.get(url, headers=headers)
+        self.response = requests.get(url, headers=headers)
+        
 
-        if response.status_code == 200:
-            return [repo['name'] for repo in response.json()]
+
+class RepoList_Request(GitHubAPI_access):
+    """GihHub API execution"""
+
+    def get_repos(self):
+        self._authenticate()
+        if self.response.status_code == 200:
+            return [repo['name'] for repo in self.response.json()]
         else:
-            print(f"Failed to fetch repositories: {response.status_code}")
+            print(f"Failed to fetch repositories: {self.response.status_code}")
             return None

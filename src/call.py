@@ -1,11 +1,9 @@
-
-
 import requests
 
 from crawler.api import *
 from crawler.core import *
 
-DEBUG = False
+DEBUG = True
 
 if DEBUG:
     import secrets
@@ -18,6 +16,6 @@ else:
 
 
 
-api_entrypoint = GitHubAPI_ep(username,token)
-repo = RepositoryList(api_entrypoint.get_repos())
+gh_api = RepoList_Request(username,token)
+repo = RepositoryList(gh_api.get_repos())
 repo.print_repos()
