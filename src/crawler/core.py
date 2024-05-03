@@ -23,9 +23,9 @@ class Repository:
 
 
 class RepositoryList(Repository):
-
-    def __init__(self, repos):
-        self.repos = repos
+### Return set object with unic repositories' names
+    def __init__(self, repos=list):
+        self.repos = set(repos)
     
     def print_repos(self):
         if self.repos:

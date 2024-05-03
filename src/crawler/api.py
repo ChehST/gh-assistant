@@ -3,7 +3,7 @@ import requests
 
 class GitHubAPI_access:
     """Authenticate to github profile"""
-    def __init__(self, username, token):
+    def __init__(self, username=str, token=str):
         self.username = username
         self.token = token
         self.base_url = "https://api.github.com"
@@ -12,7 +12,15 @@ class GitHubAPI_access:
     def _authenticate(self):
         url = f"{self.base_url}/users/{self.username}/repos"
         headers = {"Authorization": f"token {self.token}"}
-        self.response = requests.get(url, headers=headers)
+
+        try:
+            self.response = requests.get(url, headers=headers)
+            if self.response.status_code == 200:
+                print("You've been successfully connected to Github")
+            else:
+                print('Connection failed! Code:', self.response.status_code)
+        except:
+            print("Connection failed", Exception)
         
 
 

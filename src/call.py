@@ -1,5 +1,3 @@
-import requests
-
 from crawler.api import *
 from crawler.core import *
 
@@ -13,8 +11,6 @@ else:
     print ('No Environment keys setup! Prepare for failure')
     username = ""
     token = ""
-
-
 
 gh_api = RepoList_Request(username,token)
 repo = RepositoryList(gh_api.get_repos())
