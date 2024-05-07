@@ -1,5 +1,5 @@
-from crawler.api import *
-from crawler.core import *
+from api_assistent.api import *
+from api_gh.api import *
 
 DEBUG = True
 

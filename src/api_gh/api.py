@@ -1,9 +1,10 @@
 import requests
-import colorama
 
 
-class GitHubAPI_access:
+
+class GH_access:
     """Authenticate to github profile"""
+    
     def __init__(self, username=str, token=str):
         self.username = username
         self.token = token
@@ -17,15 +18,15 @@ class GitHubAPI_access:
         try:
             self.response = requests.get(url, headers=headers)
             if self.response.status_code == 200:
-                print(colorama.Back.GREEN,"You've been successfully connected to Github",colorama.Style.RESET_ALL)
+                print("You've been successfully connected to Github")
             else:
-                print(colorama.Back.RED,'Connection failed! Code:', self.response.status_code,colorama.Style.RESET_ALL)
+                print('Connection failed! Code:', self.response.status_code)
         except:
-            print(colorama.Back.RED,"Connection failed", Exception, colorama.Style.RESET_ALL)
+            print("Connection failed", Exception)
         
 
 
-class RepoList_Request(GitHubAPI_access):
+class RepoList_Request(GH_access):
     """GihHub API execution"""
 
     def get_repos(self):

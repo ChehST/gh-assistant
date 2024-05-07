@@ -1,4 +1,4 @@
-from .api import RepoList_Request
+from api_gh.api import RepoList_Request
 
 
 class Repository:
